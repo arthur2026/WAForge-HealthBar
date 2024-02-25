@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="forms.css">
+    <title>Health and Fitness Questionaire</title>
+
+    <script>
+        function calculateScore() {
+            const questions = [
+                {
+                    name: 'awareness',
+                    correctAnswers: ['8 - 9 hrs']
+                },
+                {
+                    name: 'concerns',
+                    correctAnswers: ['Drinking caffeine before bedtime']
+                },
+                {
+                    name: 'definition',
+                    correctAnswers: ['1 litre']
+                },
+            ];
+
+            let totalScore = 0;
+
+            questions.forEach(question => {
+                const selectedOptions = document.querySelectorAll(`input[name="${question.name}"]:checked`);
+
+                selectedOptions.forEach(option => {
+                    if (question.correctAnswers.includes(option.value)) {
+                        totalScore++;
+                    }
+                });
+            });
+
+            return totalScore;
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('survey-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                const score = calculateScore();
+
+                // Display the total score
+                alert('Your total score: ' + score + " out of 3\nThank you for your contribution!" );
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container ">
+        <style>
+            </style>
+        <header class="header">
+            <h1 id="title">
+                <b>HealthBar Health and Fitness Awareness Survey</b>
+            </h1>
+            <p id="description">
+                Thank you for taking the time to help us improve the platform.
+            </p>
+        </header>
+        <form action="" id="survey-form">
+
+            <!-- radio button section -->
+            <div class="form-group">
+                <p id="quest">What is the recommended amount of sleep an 18-64 adult should get?</p>
+                <label for="">
+                    <input type="radio" name="awareness" value="4 - 5 hrs" class="inputRadio" checked> 4 - 5 hrs
+                </label>
+                <label for="">
+                    <input type="radio" name="awareness" value="6 - 7 hrs" class="inputRadio"> 6 - 7 hrs
+                </label>
+                <label for="">
+                    <input type="radio" name="awareness" value="8 - 9 hrs" class="inputRadio"> 8 - 9 hrs
+                </label>
+                <label for="">
+                    <input type="radio" name="awareness" value="9 - 10 hrs" class="inputRadio"> 9 - 10 hrs
+                </label>
+            </div>
+
+            <!-- radio button section -->
+            <div class="form-group">
+                <p id="quest">Which of the following can negatively impact sleep quality?</p>
+                <label for="">
+                    <input type="radio" name="concerns" value="Putting down all screens an hour before bedtime" class="inputRadio" checked> Putting down all screens an hour before bedtime
+                </label>
+                <label for="">
+                    <input type="radio" name="concerns" value="Drinking caffeine before bedtime" class="inputRadio"> Drinking caffeine before bedtime
+                </label>
+                <label for="">
+                    <input type="radio" name="concerns" value="Having a consistent sleep schedule" class="inputRadio"> Having a consistent sleep schedule
+                </label>
+                <label for="">
+                    <input type="radio" name="concerns" value="Finishing dinner several hours before bedtime" class="inputRadio"> Finishing dinner several hours before bedtime
+                </label>
+            </div>
+
+            <!-- radio button section -->
+            <div class="form-group">
+                <p id="quest">What is the approximate daily recommended water intake for adult males?</p>
+                <label for="">
+                    <input type="radio" name="definition" value="1 litre" class="inputRadio" checked> 1 litre
+                </label>
+                <label for="">
+                    <input type="radio" name="definition" value="2 litres" class="inputRadio"> 2 litres
+                </label>
+                <label for="">
+                    <input type="radio" name="definition" value="3 litres" class="inputRadio"> 3 litres
+                </label>
+                <label for="">
+                    <input type="radio" name="definition" value="4 litres" class="inputRadio"> 4 litres
+                </label>
+            </div>
+
+            <!-- Textarea section -->
+            <div class="form-group">
+                <p id="quest">Have you participated in any local or community-based health or fitness initiatives or projects? If yes, please describe your involvement.</p>
+                <textarea name="involvement" cols="30" rows="5" id="feedback" class="textarea" placeholder="Enter your answer here..."></textarea>
+            </div>
+
+            <!-- Textarea section -->
+            <div class="form-group">
+                <p id="quest">What steps do you think should be taken to improve your own health and fitness?</p>
+                <textarea name="steps" cols="30" rows="5" id="feedback" class="textarea" placeholder="Enter your answer here..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+            <button><a style="text-decoration:none" href = "index.html">Back to Home</a></button>
+            
+            
+        </form>
+    </div>
+</body>
+</html>
